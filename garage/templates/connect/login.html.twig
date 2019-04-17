@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <style>
+
+    </style>
+    <h1 style="margin-top: 7%;" class="titleAccueil">Connexion</h1>
+    <form class="formulaireConnect" action="{{ path('login') }}" method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="FormulaireComplet">
+<div class="englobLabelInput">
+        <label  class="label" for="email">Email</label><br><input class="Button" type="email" name="_username" id="email" placeholder="Email" >
+    <br></div>
+        <div class="englobLabelInput">
+        <label class="label" for="password">Mot de passe</label><br><input class="Button" type="password" name="_password" id="password" placeholder="Password">
+<br></div>
+        <input value="Connexion" class="buttonConnect" type="submit">
+        </div>
+
+
+
+    </form>
+{% endblock %}

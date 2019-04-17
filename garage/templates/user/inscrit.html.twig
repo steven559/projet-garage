@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}Garage Pilet | Inscription{% endblock %}
+
+{% block body %}
+
+    <main>
+
+
+        <h1 class="titleAccueil">Formulaire d'inscription</h1>
+        <form  action="{{ path('register') }}" method="post">
+            <div class="formulaire">
+                <div class="formstyle">
+
+                <div class="form">{{ form_start(registrationForm) }}</div>
+                <div class="form">{{ form_row(registrationForm.email,{'attr':{'class':'inscritInput','placeholder':'Email'}}) }} </div>
+                <div class="form">{{ form_row(registrationForm.password,{'attr':{'placeholder':'Mot de passe','class':'inscritInput'}}) }}</div>
+                <div class="form">{{ form_row(registrationForm.nom,{'attr':{'class':'inscritInput','placeholder':'Nom'}}) }}</div>
+                <div class="form">{{ form_row(registrationForm.prenom,{'attr':{'class':'inscritInput','placeholder':'Prenom'}}) }}</div>
+                <div class="form">{{ form_row(registrationForm.numero,{'attr':{'class':'inscritInput','placeholder':'Numero'}}) }}</div>
+
+
+                {{ form_end(registrationForm) }}
+                <button type="submit">Inscription</button>
+                </div>
+            </div>
+
+
+        </form>
+    </main>
+{% endblock %}

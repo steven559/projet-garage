@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous index{% endblock %}
+
+{% block body %}
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <style>
+
+
+        .containerRendezVous {
+            text-align: center;
+            background-color: lightslategray;
+            width: 40%;
+            margin-top: 3%;
+            padding: 2% 2% 2% 2%;
+            box-shadow: 5px 5px 3px 0 #5dacd7;
+
+        }
+
+        .containerTotal {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+
+        }
+
+
+        .message {
+            margin-top: 2%;
+
+
+        }
+
+        .detailText {
+            text-decoration: none;
+            color: wheat;
+            cursor: pointer;
+        }
+
+        .detailMessage {
+            margin-top: 3%;
+
+            font-weight: bold;
+
+
+        }
+    </style>
+
+    <h1 class="titleAccueil">Demande de Rendez-vous</h1>
+
+
+
+    <body>
+    {% for rendez_vous in rendez_vouses %}
+        <div class="containerTotal">
+
+            <div class="containerRendezVous">
+                <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
+
+                <!-- <div id="rendezVous" class="containerRendezVous">
+            <div class="jour">Rendez-vous : {{ rendez_vous.jour }}</div>
+            <div class="heurDepart">{{ rendez_vous.heurDepart }}</div>
+            <div class="heurFin">{{ rendez_vous.heurFin }}</div>-->
+
+
+                <div class="detailMessage"><a class="detailText"
+                                              href="{{ path('rendez_vous_show', {'id': rendez_vous.id}) }}">Voir le
+                        message complet</a></div>
+            </div>
+        </div>
+        <!--<a href="{{ path('rendez_vous_edit', {'id': rendez_vous.id}) }}">edit</a>-->
+
+
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </body>
+    <script>
+
+
+    </script>
+
+
+    <div class="stockCreation"><a class="Crée" href="{{ path('rendez_vous_new') }}">Faire une demande de
+            Rendez-vous</a></div>
+{% endblock %}

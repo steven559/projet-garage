@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous{% endblock %}
+
+{% block body %}
+    <h1>RendezVous</h1>
+
+
+
+<div class="containerRendezVous">
+
+                <div><strong>Jour du rendez-vous : </strong>{{ rendez_vous.jour }}</div>
+
+
+
+                <div><strong>Heur du rendez-vous:</strong> Entre{{ rendez_vous.heurDepart }} Est {{ rendez_vous.heurFin }}</div>
+
+
+
+
+
+</div>
+    <a href="{{ path('rendez_vous_index') }}">Retour au Demande de rendez-vous</a>
+
+   <!-- <a href="{{ path('rendez_vous_edit', {'id': rendez_vous.id}) }}">edit</a>-->
+
+    {{ include('rendez_vous/_delete_form.html.twig') }}
+{% endblock %}

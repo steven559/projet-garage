@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Content index{% endblock %}
+
+
+{% block body %}
+    <style>
+
+
+    </style>
+    <h1 class="titlePageAccueil">Garage Pilet</h1>
+
+
+
+    {% for content in contents %}
+
+
+        <div class="contentAccueil"><p class="paragrapheAccueil">{{ content.content }}</p></div>
+        <div class="containerButton">
+            {% if is_granted('ROLE_ADMIN') %}
+            <div class="centreButton"><a class="buttonModifier"
+                                         href="{{ path('content_edit', {'id': content.id}) }}">edit</a></div>
+
+            {% endif %}
+        </div>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+
+    {% endfor %}
+    <div  class="paralaxe"><img style="width:100%; position:fixed; z-index:-1; margin-top: -23%;" src="..\image\backgroundParalax.jpg" alt=""></div>
+    <h2 style="margin-top: 8%;" class="titlePageAccueil">Horraire</h2>
+<div class="tableau" style="text-align: -webkit-center">
+    <table class="tableHoraire">
+
+        <!--  <tr class="MatinMidi">-->
+        <tr>
+
+   <td></td>
+            <td class="Matin">Matin</td>
+            <td class="midi">Après midi</td>
+
+        </tr>
+        {% for horaire in horaire %}
+
+
+            <tr>
+                <td id="horaire" class="horairelist horaireJour">{{ horaire.jour }}</td>
+                <td id="horaire" class="horairelist">{{ horaire.matin }}</td>
+                <td id="horaire" class="horairelist">{{ horaire.midi }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <style>
+                        .tableau{
+                            margin-left:100px;
+                        }
+                    </style>
+                <td>
+
+                    <a class="buttonHoraire" href="{{ path('horaire_edit', {'id': horaire.id}) }}">Modifier</a>
+                   </td>
+
+                {% endif %}
+            </tr>
+
+
+        {% endfor %}
+
+
+    </table>
+</div>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="stockCreation">
+        <a class="Crée" href="{{ path('content_new') }}">Ajouter un contenue</a>
+        <a class="Crée" href="{{ path('horaire_new') }}">Ajouter un horaire</a>
+    </div>
+{% endif %}
+{% endblock %}

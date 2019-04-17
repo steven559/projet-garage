@@ -1,0 +1,6 @@
+<link rel="stylesheet" href="..\..\App.css">
+<form method="post" action="{{ path('content_delete', {'id': content.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ content.id) }}">
+    <div class="containerForm"> <button class="boutonForm couleurSupr">Supprimer le contenue</button></div>
+</form>

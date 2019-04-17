@@ -1,0 +1,374 @@
+
+                                                   /*Formulaire*/
+
+
+
+
+.required {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.required > input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form {
+    margin-top: 7%;
+}
+
+.pageHoraire {
+    margin-top: 8%;
+}
+
+form > #horaire {
+    display: flex;
+    flex-direction: inherit;
+    justify-content: center;
+}
+
+textarea {
+    width: 50%;
+    height: 20vh;
+}
+
+.containerStart {
+    display: flex;
+    flex-direction: column;
+    text-align: -webkit-center;
+}
+
+#content > div {
+    display: flex;
+    flex-direction: column;
+    text-align: -webkit-center;
+}
+
+.boutonForm {
+    background: cadetblue;
+    padding: 6px 7px 6px 7px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.containerForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3%;
+
+
+}
+
+.couleurSupr {
+    background-color: #AA3333;
+}
+
+
+                                                              /*Footer*/
+
+
+
+.footer {
+    width: 100%;
+    background-color: #5dacd7;
+    height: 20vh;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    position: static;
+    bottom: 0;
+}
+
+.demiContainerFooter {
+
+}
+
+.sectionFooter {
+    padding-top: 2%;
+}
+
+                                                            /*Header*/
+
+
+
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    background-color: lightblue;
+
+
+}
+
+.header {
+
+    height: 10vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    mso-border-shadow: yes;
+    box-shadow: 0 2px 2px 0 #5dacd7;
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+    z-index: 0;
+    background-color: #ffeaa7;
+
+
+}
+
+.image {
+    cursor: pointer;
+
+}
+
+.section {
+    padding-left: 12vw;
+
+}
+
+.containerHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+                                                           /*INDEX(ACCUEIL)*/
+
+
+
+
+
+.titre {
+    text-align: center;
+    color: #5eb5e0;
+    text-shadow: 1px 1px cadetblue;
+
+}
+
+
+.contentAccueil {
+    display: flex;
+    justify-content: center;
+}
+
+.paragrapheAccueil {
+    width: 50%;
+    text-align: justify;
+    color: white;
+
+}
+
+.titleAccueil {
+    color: cadetblue;
+    text-shadow: 1px 1px dodgerblue;
+    text-align: center;
+    margin-top: 8%;
+}
+
+.titlePageAccueil {
+    color: #ffeaa7;
+    text-shadow: 1px 1px black;
+    text-align: center;
+    margin-top: 8%;
+
+}
+
+.buttonAfficher {
+
+    color: white;
+    text-decoration: none;
+
+}
+
+.containerButton {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3%;
+    justify-content: center;
+}
+
+.centreButton {
+    background-color: cadetblue;
+    width: 7%;
+    height: 1vw;
+    text-align: center;
+    align-items: center;
+    align-self: center;
+    border-radius: 37px;
+    padding: 5px 8px 13px 8px;
+}
+
+.buttonModifier {
+    color: white;
+    text-decoration: none;
+}
+
+
+.Matin {
+    background-color: cornflowerblue;
+    width: 11%;
+    text-align: center;
+    font-style: initial;
+    padding: 3px 42px 3px 42px;
+    font-weight: bold;
+    color: white;
+    margin-left: 3%;
+    box-shadow: 1.5px 1.5px 1px #656565;
+
+
+}
+
+.midi {
+    background-color: cornflowerblue;
+    width: 11%;
+    text-align: center;
+    font-style: initial;
+    padding: 3px 42px 3px 42px;
+    margin-left: -2%;
+    font-weight: bold;
+    color: white;
+    box-shadow: 1.5px 1.5px 1px #656565;
+
+}
+
+.containerHoraire {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 3%;
+
+}
+
+.tableHoraire {
+    width: 46%;
+    display: table;
+
+
+}
+
+.MatinMidi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.horairelist {
+    background-color: cornflowerblue;
+    padding: 5px 8px 5px 8px;
+    width: 6%;
+    text-align: center;
+    font-weight: bold;
+    margin: 3px 3px 3px 3px;
+    box-shadow: 1.5px 1.5px 1px #656565;
+
+}
+
+.horaireJour {
+    color: white;
+
+
+}
+
+.buttonHoraire {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background: cadetblue;
+    padding: 3px 9px 4px 9px;
+    box-shadow: 3px 3px 1px #656565;
+}
+
+.stockCreation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 3%;
+}
+
+.Crée {
+    background: cadetblue;
+    padding: 3px 11px 3px 11px;
+    text-decoration: none;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+                                                    /*Formulaire inscription*/
+
+
+
+
+.formulaire {
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+}
+
+.form {
+    margin-top: 2%;
+}
+
+.formstyle {
+    border-radius: 45px;
+    padding: 10px 0 10px 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 70%;
+    text-align: center;
+    box-shadow: 5px 5px 2px #656565;
+
+
+}
+
+                                                     /*FormulaireConnexion*/
+
+
+
+
+.label {
+    margin-top: 4%;
+}
+
+.englobLabelInput {
+    margin-top: 5%;
+}
+
+.buttonConnect {
+    margin-top: 5%;
+}
+
+.formulaireConnect {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.FormulaireComplet {
+    text-align: center;
+    width: 50%;
+    padding: 15px 3px 15px 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 45px;
+    box-shadow: 8px 8px 4px #656565;
+}

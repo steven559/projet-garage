@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="..\..\App.css">
+<div class="header">
+
+    <a href="{{ path('content_index') }}"><img class="image" style="width:12vh;" src="../52643003_817637738583608_6312561306083786752_n.png" alt="">
+    </a>
+    <div class="containerHeader">
+    <div class="section">Devis</div>
+
+        <div class="section"><a href="{{ path('vente_index') }}">Vente</a></div>
+        {% if is_granted('ROLE_USER') %}
+            <div class="section"><a href="{{ path('rendez_vous_index') }}">Rendez-vous</a></div>
+          <!--  <div class="section">Mon espace Devis</div>-->
+            <div class="section"><a href="/logout">Deconnexion</a></div>
+
+
+
+
+
+
+
+{% elseif is_granted('ROLE_ADMIN') %}
+    <div class="section"><a href="{{ path('rendez_vous_admin') }}">Rendez-vous admin</a></div>
+  <!--  <div class="section">Mon espace Devis</div>-->
+    <div class="section"><a href="/logout">Deconnexion</a></div>
+    <div class="section"><a href="{{ path('register') }}">Inscription</a></div>
+{% else %}
+    <div class="section"><a href="{{ path('login') }}">Connexion</a></div>
+
+    <div class="section"><a href="{{ path('register') }}">Inscription</a></div>
+        {% endif %}
+
+    </div>
+</div>

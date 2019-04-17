@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Content{% endblock %}
+
+{% block body %}
+    <h1 class="titleAccueil">Ajouter un nouvelle horraire</h1>
+
+    {{ include('content/_formHoraire.html.twig') }}
+
+    <div class="containerForm pageHoraire"> <a href="{{ path('content_index') }}">back to list</a></div>
+{% endblock %}
