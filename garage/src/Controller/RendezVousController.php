@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\RendezVous;
+use App\Entity\AdminReponse;
+use App\Form\AdminReponseType;
 use App\Form\RendezVousType;
+use App\Repository\AdminReponseRepository;
 use App\Repository\RendezVousRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -20,14 +23,18 @@ class RendezVousController extends AbstractController
     //permet de faire la demande de rendez-vous
     /**
      * @Route("/user", name="rendez_vous_index", methods={"GET"})
+     * @param RendezVousRepository $rendezVousRepository
+     * @param AdminReponseRepository $adminReponseRepository
+     * @return Response
      */
-    public function index(RendezVousRepository $rendezVousRepository): Response
+    public function index(RendezVousRepository $rendezVousRepository, AdminReponseRepository $adminReponseRepository): Response
     {
         $user = $this->getUser();
 
         return $this->render('rendez_vous/index.html.twig', [
             //mettre la condition
             'rendez_vouses' => $rendezVousRepository->findBy(["User"=>$user]),
+            'AdminReponses'=> $adminReponseRepository->findBy(['user_id'=>$user]),
         ]);
     }
 
@@ -38,18 +45,53 @@ class RendezVousController extends AbstractController
      * @return Response
      * @Route("/admin", name="rendez_vous_admin", methods={"GET"})
      */
-    public function indexAdmin(RendezVousRepository $rendezVousRepository): Response
+    public function indexAdmin(RendezVousRepository $rendezVousRepository, AdminReponseRepository $adminReponseRepository): Response
     {
-        return $this->render('rendez_vous/admin.html.twig', [
+        return $this->render('rendez_vous/index.html.twig', [
 
             'rendez_vouses' => $rendezVousRepository->findAll(),
+            'AdminReponses'=> $adminReponseRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route("/admin/new/{id}" ,name="rendez_vous_newAdmin", methods={"GET","POST"})
+     */
+    public function newResponse(Request $request, RendezVous $rendezVous): Response
+    {
+
+        $AdminReponse = new AdminReponse();
+        $form = $this->createForm(AdminReponseType::class,$AdminReponse);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+
+            $user = $this->getUser();
+            $user_email = $user->getEmail();
+          /*  $AdminReponse->setCreatedAt(new\DateTime(time()));*/
+            $AdminReponse->setUserId($rendezVous->getUser());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($AdminReponse);
+            $entityManager->flush();
+
+$this->addFlash('success', 'Message Envoyez ');
+
+            return $this->redirectToRoute('rendez_vous_index');
+        }
+        return $this->render('rendez_vous/newAdmin.html.twig', [
+            'reponse' => $AdminReponse,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/new", name="rendez_vous_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, RendezVousRepository $rendezVousRepository): Response
     {
         $rendezVous = new RendezVous();
         $form = $this->createForm(RendezVousType::class, $rendezVous);
@@ -60,23 +102,34 @@ class RendezVousController extends AbstractController
             $user_email = $user->getEmail();
             $rendezVous->setUser($this->getUser());
             // Envoie email
-         /*   $form = $this->createForm(EmailType::class,$email);
-            $message = (new \Swift_Message('Hello Email'))
-                ->setFrom($form)
-                ->setTo($form)
+            $transport = (new \Swift_SmtpTransport('smtp.gmail.com',465,'ssl'))
+                ->setUsername('garagepilet@gmail.com')
+                ->setPassword('b@bmarley789');
+
+            $mailer = new\Swift_Mailer($transport);
+
+            $message = (new\Swift_Message('Garage Pilet'))
+                ->setSubject('Message de rendez-vous')
+                ->setFrom('garagepilet@gmail.com')
+                ->setTo('garagepilet@gmail.com')
                 ->setBody(
                     $this->renderView(
-                    // templates/emails/registration.html.twig
-                        'rendez_vous/admin.html.twig',
-                        ['name' => $email]
+                        'content/rendez_vous.html.twig',[
+                            'rendezvouses' => $rendezVous,
+                            'User' => $user
+
+                        ]
                     ),
                     'text/html'
                 );
+            $mailer->send($message);
 
-            $mailer->send($message);*/
+            $this->redirectToRoute('content_index');
+
 
 
             // recup user connecte
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($rendezVous);
             $entityManager->flush();
@@ -117,6 +170,18 @@ class RendezVousController extends AbstractController
     {
         return $this->render('rendez_vous/show.html.twig', [
             'rendez_vous' => $rendezVous,
+        ]);
+    }
+
+    /**
+     * @param AdminReponse $adminReponse
+     * @return Response
+     * @Route("/show/{id}",name="reponse_rendez_vous",methods={"GET"})
+     */
+    public function showAdmin(AdminReponse $adminReponse): Response
+    {
+        return $this->render('rendez_vous/showAdmin.html.twig',[
+            'AdminReponse'=> $adminReponse
         ]);
     }
 

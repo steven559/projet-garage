@@ -11,14 +11,7 @@
             justify-content: center;
             margin-top: 5%;
         }
-        .titleVente{
-            background: cornflowerblue;
-            padding: 8px 13% 8px 13%;
-            font-size: 4vw;
-            /* position: absolute; */
-            margin-top: -4%;
-            color: white;
-        }
+
         .englobImg{
             display: flex;
             flex-direction: row;
@@ -62,21 +55,69 @@
             justify-content: center;
             margin-top: 2%;
         }
+        .parralax1 {
+            background: url("https://www.google.fr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjLgOf7p-bhAhXN6OAKHb18CPsQjRx6BAgBEAU&url=https%3A%2F%2Fwww.sortiesdeplage.fr%2Fparallax-background-dark-03%2F&psig=AOvVaw3Bb33tLxD5zquR56uQXT54&ust=1556112205429721")
+            center 0 no-repeat fixed;
+            position:fixed;
+
+
+            width:100%;
+            height:1000px;
+
+            padding-top:100px;
+            z-index:-1;
+
+
+
+        }
+        body{
+            margin-top: 100px;
+        }
+
+        .parralax2 {
+            background: url("http://jolofsystem.com/wp-content/uploads/2015/01/Parallax-Background-Dark-02.jpg")
+            center 0 no-repeat fixed;
+            padding-top: 100px;
+
+
+            width:100%;
+            height:1000px;
+            z-index:-1;
+
+        }
+
+        .parralax3 {
+            background: url("http://jolofsystem.com/wp-content/uploads/2015/01/Parallax-Background-Dark-04.jpg")
+            center 0 no-repeat fixed;
+
+            z-index:-1;
+            width:100%;
+            height:1000px;
+
+
+        }
     </style>
+
+
+
+
     <h1>Vente index</h1>
 
     <table class="table">
         <thead>
-
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="script/jquery.parallax-1.1.js"></script>
         </thead>
         <body>
+
+
         <h1 class="titleAccueil">Vente de Voiture</h1>
         {% for vente in ventes %}
 
 
 
                 <div class="imageVente">
-                    <img src="/image/{{ vente.image }}" alt="">
+                    <img style="max-width: 905px; max-height: 500px;" src="/image/{{ vente.image }}" alt="">
 
                 </div>
         <div class="englobImg">  <div class="titleVente">{{ vente.titre }}</div></div>
@@ -95,7 +136,11 @@
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
+
         {% endfor %}
+                    <script>
+                        $("élément").parallax(xPosition, adjuster, inertia, outerHeight);
+                    </script>
         </body>
     </table>
 

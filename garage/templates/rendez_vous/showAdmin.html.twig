@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RendezVous{% endblock %}
+
+{% block body %}
+    <style>
+        .containerRendezVous{
+            margin-top: 10%;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+        }
+    </style>
+    <h1>RendezVous</h1>
+
+
+
+    <div class="containerRendezVous">
+        <div style="width: 60%;
+    background-color: cadetblue;
+    padding: 10px 10px 10px 10px;
+ border: solid 5px black;">
+<h2><strong>Sujet:</strong> Réponse a la demande de devis </h2>
+       <div><strong>Message:     </strong>{{ AdminReponse.messsage }}</div>
+    </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+
+

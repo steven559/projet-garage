@@ -1,7 +1,4 @@
-
-                                                   /*Formulaire*/
-
-
+/*Formulaire*/
 
 
 .required {
@@ -70,8 +67,7 @@ textarea {
 }
 
 
-                                                              /*Footer*/
-
+/*Footer*/
 
 
 .footer {
@@ -96,15 +92,13 @@ textarea {
     padding-top: 2%;
 }
 
-                                                            /*Header*/
-
-
+/*Header*/
 
 
 body {
     width: 100%;
     margin: 0 auto;
-    background-color: lightblue;
+    background-color: gainsboro;
 
 
 }
@@ -112,44 +106,41 @@ body {
 .header {
 
     height: 10vh;
-
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    mso-border-shadow: yes;
-    box-shadow: 0 2px 2px 0 #5dacd7;
+    box-shadow: 0 2px 2px 0 #6f6161;
     position: fixed;
     width: 100%;
-    top: 0;
+    top: 22px;
 
-    z-index: 0;
-    background-color: #ffeaa7;
+    z-index: 10;
+    background-color: #c6c0c0;
 
 
 }
 
 .image {
     cursor: pointer;
+    width: 40%;
 
 }
 
 .section {
-    padding-left: 12vw;
+    padding-left: 5vw;
 
 }
 
 .containerHeader {
-    width: 100%;
+    width: 88%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 
 }
 
-                                                           /*INDEX(ACCUEIL)*/
-
-
-
+/*INDEX(ACCUEIL)*/
 
 
 .titre {
@@ -157,6 +148,15 @@ body {
     color: #5eb5e0;
     text-shadow: 1px 1px cadetblue;
 
+}
+
+.titleVente {
+    background: cornflowerblue;
+    padding: 8px 13% 8px 13%;
+    font-size: 4vw;
+    /* position: absolute; */
+    margin-top: -4%;
+    color: white;
 }
 
 
@@ -309,9 +309,7 @@ body {
     font-weight: bold;
 }
 
-                                                    /*Formulaire inscription*/
-
-
+/*Formulaire inscription*/
 
 
 .formulaire {
@@ -339,9 +337,7 @@ body {
 
 }
 
-                                                     /*FormulaireConnexion*/
-
-
+/*FormulaireConnexion*/
 
 
 .label {
@@ -372,3 +368,4 @@ body {
     border-radius: 45px;
     box-shadow: 8px 8px 4px #656565;
 }
+                                        /*CAROUSEL*/

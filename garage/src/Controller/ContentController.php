@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Content;
-
+use App\Repository\VenteRepository;
 use App\Entity\Horaire;
 use App\Form\ContentType;
 use App\Form\HoraireType;
@@ -24,9 +24,13 @@ class ContentController extends AbstractController
     /**
      * @Route("/", name="content_index", methods={"GET"})
      */
-    public function index(ContentRepository $contentRepository, HoraireRepository $horaireRepository): Response
+    public function index(ContentRepository $contentRepository, HoraireRepository $horaireRepository , VenteRepository $venteRepository): Response
     {
+
+
+      $lastvoitures= $venteRepository->articleAccueil();
         return $this->render('content/index.html.twig', [
+            'lastvoitures'=> $lastvoitures,
             'contents' => $contentRepository->findAll(),
             'horaire' => $horaireRepository->findAll()
         ]);
@@ -77,6 +81,8 @@ class ContentController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
 
     /**
      * @Route("/afficher/{id}", name="content_show", methods={"GET"})

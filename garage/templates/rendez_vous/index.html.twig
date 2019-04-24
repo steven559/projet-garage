@@ -3,9 +3,8 @@
 {% block title %}RendezVous index{% endblock %}
 
 {% block body %}
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    </head>
+
+
     <style>
 
 
@@ -55,22 +54,41 @@
 
 
     <body>
+    {% for message in app.flashes('success') %}
+        <div style="color:black;width:200px;">{{ message }}</div>
+    {% endfor %}
     {% for rendez_vous in rendez_vouses %}
         <div class="containerTotal">
+            {% if is_granted('ROLE_USER') %}
+                <div class="containerRendezVous">
+                    <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
 
-            <div class="containerRendezVous">
-                <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
-
-                <!-- <div id="rendezVous" class="containerRendezVous">
+                    <!-- <div id="rendezVous" class="containerRendezVous">
             <div class="jour">Rendez-vous : {{ rendez_vous.jour }}</div>
             <div class="heurDepart">{{ rendez_vous.heurDepart }}</div>
             <div class="heurFin">{{ rendez_vous.heurFin }}</div>-->
 
 
-                <div class="detailMessage"><a class="detailText"
-                                              href="{{ path('rendez_vous_show', {'id': rendez_vous.id}) }}">Voir le
-                        message complet</a></div>
-            </div>
+                    <div class="detailMessage"><a class="detailText"
+                                                  href="{{ path('rendez_vous_show', {'id': rendez_vous.id}) }}">Voir le
+                            message complet</a></div>
+                </div>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="containerRendezVous">
+                    <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
+
+                    <!-- <div id="rendezVous" class="containerRendezVous">
+            <div class="jour">Rendez-vous : {{ rendez_vous.jour }}</div>
+            <div class="heurDepart">{{ rendez_vous.heurDepart }}</div>
+            <div class="heurFin">{{ rendez_vous.heurFin }}</div>-->
+
+
+                    <div class="detailMessage"><a class="detailText"
+                                                  href="{{ path('rendez_vous_show', {'id': rendez_vous.id}) }}">Voir le
+                            message complet</a></div>
+                </div>
+            {% endif %}
         </div>
         <!--<a href="{{ path('rendez_vous_edit', {'id': rendez_vous.id}) }}">edit</a>-->
 
@@ -89,4 +107,19 @@
 
     <div class="stockCreation"><a class="Crée" href="{{ path('rendez_vous_new') }}">Faire une demande de
             Rendez-vous</a></div>
+    <h2>Mes reponse au Rendez-vous</h2>
+    {% for AdminReponse in AdminReponses %}
+
+        <div class="containerRendezVous">
+            <div>{{ AdminReponse.userId }}</div>
+
+            <div>{{ AdminReponse.heur }}</div>
+            <div class="detailMessage"><a class="detailText"
+                                          href="{{ path('reponse_rendez_vous', {'id': AdminReponse.id}) }}">Voir le
+                    message complet</a></div>
+        </div>
+        </div>
+
+    {% endfor %}
+
 {% endblock %}

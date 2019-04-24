@@ -19,6 +19,15 @@ class VenteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vente::class);
     }
 
+    public function articleAccueil()
+    {
+        return $this->createQueryBuilder('p')
+            ->setMaxResults('3')
+            ->getQuery()
+            ->getResult();
+
+    }
+
     // /**
     //  * @return Vente[] Returns an array of Vente objects
     //  */

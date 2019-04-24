@@ -1,0 +1,7 @@
+{% block body %}
+
+    <span>Pour valider votre compte veuillez cliquer sur le lien ci-dessous</span>
+   <p>
+       <a href="http://localhost:8000{{ path('inscrit',{ 'incriptionToken' : RegisterToken}) }}">Lien de confirmation</a>
+   </p>
+{% endblock %}

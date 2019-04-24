@@ -54,9 +54,25 @@ class User implements UserInterface
      */
     private $rendezVouses;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AdminReponse", mappedBy="user_id")
+     */
+    private $adminReponses;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $incriptionToken;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $active;
+
     public function __construct()
     {
         $this->rendezVouses = new ArrayCollection();
+        $this->adminReponses = new ArrayCollection();
     }
     public function __toString()
     {
@@ -230,6 +246,61 @@ class User implements UserInterface
                 $rendezVouse->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdminReponse[]
+     */
+    public function getAdminReponses(): Collection
+    {
+        return $this->adminReponses;
+    }
+
+    public function addAdminReponse(AdminReponse $adminReponse): self
+    {
+        if (!$this->adminReponses->contains($adminReponse)) {
+            $this->adminReponses[] = $adminReponse;
+            $adminReponse->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdminReponse(AdminReponse $adminReponse): self
+    {
+        if ($this->adminReponses->contains($adminReponse)) {
+            $this->adminReponses->removeElement($adminReponse);
+            // set the owning side to null (unless already changed)
+            if ($adminReponse->getUserId() === $this) {
+                $adminReponse->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIncriptionToken(): ?string
+    {
+        return $this->incriptionToken;
+    }
+
+    public function setIncriptionToken(?string $incriptionToken): self
+    {
+        $this->incriptionToken = $incriptionToken;
+
+        return $this;
+    }
+
+    public function getActive(): ?int
+    {
+        return $this->active;
+    }
+
+    public function setActive(int $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

@@ -4,75 +4,220 @@
 
 
 {% block body %}
-    <style>
+<style>
+    .imageVente {
+
+    }
+
+    .entreImgHeader {
+        width: 100%;
+        height: 3vh;
+    }
+
+    /* .containerImage{
+         display: flex;
+         flex-direction: row;
+         height: 40vh;
+     }*/
+    .imagetitre {
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 50vh;
+        background-position: left;
+    }
+
+    .parralax {
 
 
-    </style>
-    <h1 class="titlePageAccueil">Garage Pilet</h1>
+        height: 10vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .imageAccueil {
+        width: 90%;
+    }
+
+    .containerImageAccueil {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .styleLast {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+        align-items: center;
+        padding: 18px 5px 5px 5px;
+
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+
+    .styleLast:hover {
+        -webkit-transform: scale(1.13);
+        transform: scale(1.13);
+
+    }
+
+    .titleVoitureAccueil {
+        background: cornflowerblue;
+        padding: 8px 13% 8px 13%;
+        /* font-size: 4vw; */
+        /* position: absolute; */
+        margin-top: -4%;
+        color: white;
+        z-index: 31;
+    }
+
+    .carousel-inner img {
+        width: 100%;
+        height: 35vw !important;
+    }
 
 
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
-    {% for content in contents %}
+<body>
 
+<div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 6%;     ">
 
-        <div class="contentAccueil"><p class="paragrapheAccueil">{{ content.content }}</p></div>
-        <div class="containerButton">
-            {% if is_granted('ROLE_ADMIN') %}
-            <div class="centreButton"><a class="buttonModifier"
-                                         href="{{ path('content_edit', {'id': content.id}) }}">edit</a></div>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
 
-            {% endif %}
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/cars-sport-car-black-photography-dark-background-769607.jpg" alt="Voiture"
+                 style="max-height: 750px; margin-top: 0;">
         </div>
-    {% else %}
-        <tr>
-            <td colspan="3">no records found</td>
-        </tr>
+        <div class="carousel-item">
+            <img src="/bmw-e-wallpapers-PIC-MCH020808.jpg" alt="Voiture" style="max-height: 750px; margin-top: 0;">
+        </div>
+        <div class="carousel-item">
+            <img src="/BMW_xDrive_F48_White_Black_background_Crossover_519286_3840x2160.jpg" alt="Voiture"
+                 style="max-height: 750px; margin-top: 0;">
+        </div>
+    </div>
 
-    {% endfor %}
-    <div  class="paralaxe"><img style="width:100%; position:fixed; z-index:-1; margin-top: -23%;" src="..\image\backgroundParalax.jpg" alt=""></div>
-    <h2 style="margin-top: 8%;" class="titlePageAccueil">Horraire</h2>
-<div class="tableau" style="text-align: -webkit-center">
-    <table class="tableHoraire">
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+{% for content in contents %}
+<div class="jumbotron text-center" style="display: flex;
+flex-direction: row;
+justify-content: center; margin-top: 5%;"><div class="containerContent" style="width: 60%;"><h2>Bienvenue au Garage Pilet</h2><br><div style="" class="text-center">{{ content.content }}</div></div></div>
+{% endfor %}
+<h1 class="titre" style="margin-top: 8%;">Vente du Moment</h1>
+<div class="containerImage">
 
-        <!--  <tr class="MatinMidi">-->
-        <tr>
 
-   <td></td>
-            <td class="Matin">Matin</td>
-            <td class="midi">Après midi</td>
+    <div class="containerImageAccueil">
+        {% for lastvoiture in lastvoitures %}
+            <div class="styleLast">
+                <div class="containerBut" style="align-self: flex-start;     width: 35%;"><a
+                            href="{{ path('vente_index') }}">
+                        <button type="button" class="btn btn-primary" style="margin-top: 3%;">Voir Plus...</button>
+                    </a></div>
+                <div class="titleVoitureAccueil">{{ lastvoiture.titre }}</div>
+                <div><img class="imageAccueil" src="/image/{{ lastvoiture.image }}" alt="" style="max-width: 525px; max-height: 250px;"></div>
 
-        </tr>
-        {% for horaire in horaire %}
-
-
-            <tr>
-                <td id="horaire" class="horairelist horaireJour">{{ horaire.jour }}</td>
-                <td id="horaire" class="horairelist">{{ horaire.matin }}</td>
-                <td id="horaire" class="horairelist">{{ horaire.midi }}</td>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <style>
-                        .tableau{
-                            margin-left:100px;
-                        }
-                    </style>
-                <td>
-
-                    <a class="buttonHoraire" href="{{ path('horaire_edit', {'id': horaire.id}) }}">Modifier</a>
-                   </td>
-
-                {% endif %}
-            </tr>
+            </div>
 
 
         {% endfor %}
+        <script>
 
-
-    </table>
-</div>
-    {% if is_granted('ROLE_ADMIN') %}
-    <div class="stockCreation">
-        <a class="Crée" href="{{ path('content_new') }}">Ajouter un contenue</a>
-        <a class="Crée" href="{{ path('horaire_new') }}">Ajouter un horaire</a>
+        </script>
     </div>
-{% endif %}
-{% endblock %}
+
+
+    {#{% for content in contents %}
+
+
+    <div class=""><p class="">{{ content.content }}</p></div>
+    <div class="">
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class=""><a class=""
+                                     href="{{ path('content_edit', {'id': content.id}) }}">edit</a></div>
+
+        {% endif %}
+    </div>
+{% else %}
+    <tr>
+        <td colspan="3">no records found</td>
+    </tr>
+
+{% endfor %}
+#}
+    {#<div  class="paralaxe"><img style="width:100%; position:fixed; z-index:-1; margin-top: -23%;" src="..\image\backgroundParalax.jpg" alt=""></div>#}
+    {# <h2 style="margin-top: 8%;" class="titlePageAccueil">Horraire</h2>
+ <div class="tableau" style="text-align: -webkit-center">
+     <table class="tableHoraire">
+
+         <!--  <tr class="MatinMidi">-->
+         <tr>
+
+    <td></td>
+             <td class="Matin">Matin</td>
+             <td class="midi">Après midi</td>
+
+         </tr>
+         {% for horaire in horaire %}
+
+
+             <tr>
+                 <td id="horaire" class="horairelist horaireJour">{{ horaire.jour }}</td>
+                 <td id="horaire" class="horairelist">{{ horaire.matin }}</td>
+                 <td id="horaire" class="horairelist">{{ horaire.midi }}</td>
+                 {% if is_granted('ROLE_ADMIN') %}
+                     <style>
+                         .tableau{
+                             margin-left:100px;
+                         }
+                     </style>
+                 <td>
+
+                     <a class="buttonHoraire" href="{{ path('horaire_edit', {'id': horaire.id}) }}">Modifier</a>
+                    </td>
+
+                 {% endif %}
+             </tr>
+
+
+         {% endfor %}
+
+
+     </table>
+ </div>
+     {% if is_granted('ROLE_ADMIN') %}
+     <div class="stockCreation">
+         <a class="Crée" href="{{ path('content_new') }}">Ajouter un contenue</a>
+         <a class="Crée" href="{{ path('horaire_new') }}">Ajouter un horaire</a>
+     </div>
+ {% endif %}
+ #}
+    {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RendezVous{% endblock %}
+
+{% block body %}
+    <h1>Repondre au rendez-vous</h1>
+
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+{#{{ include('rendez_vous/_formAdmin.html.twig') }}#}
+
+    <a href="{{ path('rendez_vous_admin') }}">Retour a la list des rendez-vous</a>
+{% endblock %}

@@ -55,6 +55,9 @@
     <body>
     {% for rendez_vous in rendez_vouses %}
         <div class="containerTotal">
+            {% for message in app.flashes('success') %}
+                <div style="color:black;width:200px;">{{ message }}</div>
+            {% endfor %}
 
             <div class="containerRendezVous">
                 <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
