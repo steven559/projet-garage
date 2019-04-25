@@ -98,14 +98,14 @@ textarea {
 body {
     width: 100%;
     margin: 0 auto;
-    background-color: gainsboro;
+    background-color: #596877;;
 
 
 }
 
 .header {
 
-    height: 10vh;
+    height: 14vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -113,8 +113,6 @@ body {
     box-shadow: 0 2px 2px 0 #6f6161;
     position: fixed;
     width: 100%;
-    top: 22px;
-
     z-index: 10;
     background-color: #c6c0c0;
 

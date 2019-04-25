@@ -2,27 +2,108 @@
 {% block title %}Garage Pilet | Inscription{% endblock %}
 
 {% block body %}
+    <style>
+        .containerBox{
+            display: flex;
 
-    <main>
+            flex-direction: row;
+
+            justify-content: center;
+        }
+        .box{
+            width: 500px;
+            padding: 40px;
+            transform: translate(-50,-50%);
+            background: rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        .box h1{
+            color:white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .inscrit{
+            background: none;
+            display:block;
+            margin:20px auto;
+            text-align: center;
+            border:2px solid #3498db;
+            padding: 14px 10px;
+            width:200px;
+            outline:none;
+            color:white;
+            border-radius: 24px;
+            transition:0.25s;
+
+        }
+        .inscrit:focus{
+            width:300px;
+            border-color: #2ecc71 ;
+        }
+        .box input[type= "email"],.box input[type="password"]{
+
+            background: none;
+            display:block;
+            margin:20px auto;
+            text-align: center;
+            border:2px solid #3498db;
+            padding: 14px 10px;
+            width:200px;
+            outline:none;
+            color:white;
+            border-radius: 24px;
+            transition:0.25s;
+
+        }
+        .box input[type= "email"]:focus,.box input[type="password"]:focus {
+            width:300px;
+            border-color: #2ecc71 ;
+        }
+        .submitregister{
+            background:none;
+            display:block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            width:200px;
+            outline: none;
+            color:white;
+            border-radius: 24px;
+            transition:0.25s;
+            cursor: pointer;
+
+        }
+        .submitregister:hover{
+            background:#2ecc71;
+
+        }
+        .box label{
+           display:none;
+        }
+
+    </style>
+    <div style="height:5vh;"></div>
+    <main class="containerBox">
 
 
-        <h1 class="titleAccueil">Formulaire d'inscription</h1>
-        <form  action="{{ path('register') }}" method="post">
-            <div class="formulaire">
-                <div class="formstyle">
 
-                <div class="form">{{ form_start(registrationForm) }}</div>
-                <div class="form">{{ form_row(registrationForm.email,{'attr':{'class':'inscritInput','placeholder':'Email'}}) }} </div>
-                <div class="form">{{ form_row(registrationForm.password,{'attr':{'placeholder':'Mot de passe','class':'inscritInput'}}) }}</div>
-                <div class="form">{{ form_row(registrationForm.nom,{'attr':{'class':'inscritInput','placeholder':'Nom'}}) }}</div>
-                <div class="form">{{ form_row(registrationForm.prenom,{'attr':{'class':'inscritInput','placeholder':'Prenom'}}) }}</div>
-                <div class="form">{{ form_row(registrationForm.numero,{'attr':{'class':'inscritInput','placeholder':'Numero'}}) }}</div>
+        <form class="box"  action="{{ path('register') }}" method="post">
+            <h1>inscription</h1>
 
 
+                <div class="for">{{ form_start(registrationForm) }}</div>
+                <div class="for">{{ form_row(registrationForm.email,{'attr':{'class':'inscrit','placeholder':'Email'}}) }} </div>
+                <div class="for">{{ form_row(registrationForm.password,{'attr':{'placeholder':'Mot de passe','class':'inscrit'}}) }}</div>
+                <div class="for">{{ form_row(registrationForm.nom,{'attr':{'class':'inscrit','placeholder':'Nom'}}) }}</div>
+                <div class="for">{{ form_row(registrationForm.prenom,{'attr':{'class':'inscrit','placeholder':'Prenom'}}) }}</div>
+                <div class="for">{{ form_row(registrationForm.numero,{'attr':{'class':'inscrit','placeholder':'Numero'}}) }}</div>
+
+            <button class="submitregister" type="submit">Inscription</button>
                 {{ form_end(registrationForm) }}
-                <button type="submit">Inscription</button>
-                </div>
-            </div>
+
+
+
 
 
         </form>

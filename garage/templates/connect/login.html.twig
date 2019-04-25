@@ -1,24 +1,99 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <style>
+body{
+    background: #34495e;
+}
+        .box{
+            width: 414px;
 
+            padding: 40px;
+
+
+
+
+
+            transform: translate(-50,-50%);
+
+            background: rgba(0,0,0,0.4);
+
+            text-align: center;
+        }
+        .box h1{
+            color:white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .box input[type= "email"],.box input[type="password"]{
+
+            background: none;
+            display:block;
+            margin:20px auto;
+            text-align: center;
+            border:2px solid #3498db;
+            padding: 14px 10px;
+            width:200px;
+            outline:none;
+            color:white;
+            border-radius: 24px;
+            transition:0.25s;
+
+        }
+.box input[type= "email"]:focus,.box input[type="password"]:focus {
+    width:300px;
+    border-color: #2ecc71 ;
+}
+        .box input[type="submit"]{
+            background:none;
+            display:block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            width:200px;
+            outline: none;
+            color:white;
+            border-radius: 24px;
+            transition:0.25s;
+            cursor: pointer;
+
+        }
+        .box input[type="submit"]:hover{
+            background:#2ecc71;
+
+        }
+        .containerBox{
+            display: flex;
+
+            flex-direction: row;
+
+            justify-content: center;
+        }
     </style>
-    <h1 style="margin-top: 7%;" class="titleAccueil">Connexion</h1>
-    <form class="formulaireConnect" action="{{ path('login') }}" method="post">
+<div style="height:20vh;"></div>
+<main class="containerBox">
+    <form class="box" action="{{ path('login') }}" method="post">
+        <h1>Connexion</h1>
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
-        <div class="FormulaireComplet">
-<div class="englobLabelInput">
-        <label  class="label" for="email">Email</label><br><input class="Button" type="email" name="_username" id="email" placeholder="Email" >
-    <br></div>
-        <div class="englobLabelInput">
-        <label class="label" for="password">Mot de passe</label><br><input class="Button" type="password" name="_password" id="password" placeholder="Password">
-<br></div>
+
+
+
+
+        <input class="Button" type="email" name="_username" id="email" placeholder="Email" >
+
+
+
+
+
+        <input class="Button" type="password" name="_password" id="password" placeholder="Password">
+
         <input value="Connexion" class="buttonConnect" type="submit">
-        </div>
+
 
 
 
     </form>
+</main>
 {% endblock %}

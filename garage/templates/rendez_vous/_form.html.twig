@@ -1,4 +1,82 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+
+<!-- Include English language -->
+
+
+<div id="push" >{{ form_start(form) }}</div>
+<div id="push">   {{ form_widget(form) }}</div>
+<input id="test" type="text" class="datepicker-here" data-timepicker="true" data-language='fr'/>
+<button id="test4">valider</button>
+<button class="btn">{{ button_label|default('Save') }}</button>
+<div id="push">{{ form_end(form) }}</div>
+
+
+
+
+<script>// Initialization
+    $('#test').datepicker({
+        language: 'fr',
+        minDate: new Date()
+        // Now can select only dates, which goes after today
+    });
+    var disabledDays = [0, 6];
+
+    $('#test').datepicker({
+        language: 'fr',
+        onRenderCell: function (date, cellType) {
+            if (cellType == 'day') {
+                var day = date.getDay(),
+                    isDisabled = disabledDays.indexOf(day) != -1;
+
+                return {
+                    disabled: isDisabled
+                }
+            }
+        }
+    })
+    $('#test').datepicker({
+        timepicker: true,
+        language: 'fr',
+
+        minHours: 9 ,
+        maxHours: 19,
+        onSelect: function (fd, d, picker) {
+            // Do nothing if selection was cleared
+            if (!d) return;
+
+            var day = d.getDay();
+
+            // Trigger only if date is changed
+            if (prevDay != undefined && prevDay == day) return;
+            prevDay = day;
+
+            // If chosen day is Saturday or Sunday when set
+            // hour value for weekends, else restore defaults
+            if (day == 6 || day == 0) {
+                picker.update({
+                    minHours: 10,
+                    maxHours: 16
+                })
+            } else {
+                picker.update({
+                    minHours: 9,
+                    maxHours: 18
+                })
+            }
+        }
+    });
+
+    var test = document.getElementById("test");
+    var test3 = document.getElementById('push');
+    var test2 = test.value;
+    var test4 = document.getElementById('test4');
+    //autocomplete a tester
+    test4.addEventListener('click',function(){
+       /* test3.appendChild(test2);
+       test2.push('test3')
+        */
+        test2.innerHTML = test2;
+
+    })
+
+</script>

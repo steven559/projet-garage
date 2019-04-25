@@ -26,9 +26,10 @@
         }
         .englobcritere{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             margin-top: 2%;
+            text-align: center;
         }
         .prix{
             text-align: right;
@@ -96,6 +97,11 @@
 
 
         }
+        .containerTextVente{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
     </style>
 
 
@@ -123,10 +129,21 @@
         <div class="englobImg">  <div class="titleVente">{{ vente.titre }}</div></div>
             <div class="en">
           <div style="text-align: center; margin-top: 3%;">  <strong>Description technique: </strong></div>
-            <div class="englobcritere"> <div class="textVente">{{ vente.content }}</div></div>
+            <div class="englobcritere">
+                <div class="textvente"><strong>Modèle :    </strong>{{ vente.modele }}</div>
+                <div class="textvente"><strong>Marque :   </strong>{{ vente.marque }}</div>
+                <div class="textvente"><strong>Année :   </strong>{{ vente.annee }}</div>
+                <div class="textvente"><strong>Kilometrage :    </strong>{{ vente.kilometrage }}</div>
+                <div class="textvente"><strong>Carburant :    </strong>{{ vente.carburant }}</div>
+                <div class="textvente"><strong>Boite de vitesse :    </strong>{{ vente.boiteDeVitesse }}</div>
+<div class="containerTextVente">
+                <div style="width: 60%;
+text-align: justify;" class="">{{ vente.content }}</div>
+</div>
+            </div>
                 <div>
 
-                <div class="prix"><strong>Prix: </strong>{{ vente.prix }} Euro</div>
+                <div class="prix"><strong>Prix: </strong>{{ vente.prix }} €</div>
                 <div class="englobButVente">
                     <a class="butVente" href="{{ path('vente_show', {'id': vente.id}) }}">show</a>
                     <a class="butVente" href="{{ path('vente_edit', {'id': vente.id}) }}">edit</a>
