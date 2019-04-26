@@ -107,7 +107,7 @@
 
 
 
-    <h1>Vente index</h1>
+
 
     <table class="table">
         <thead>
@@ -155,9 +155,10 @@ text-align: justify;" class="">{{ vente.content }}</div>
             </tr>
 
         {% endfor %}
-                    <script>
-                        $("élément").parallax(xPosition, adjuster, inertia, outerHeight);
-                    </script>
+                    <div class="navigation">
+                        {{ knp_pagination_render(ventes) }}
+                    </div>
+
         </body>
     </table>
 

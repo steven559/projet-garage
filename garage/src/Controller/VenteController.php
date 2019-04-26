@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Vente;
 use App\Form\VenteType;
 use App\Repository\VenteRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,15 +20,23 @@ class VenteController extends AbstractController
     /**
      * @Route("/", name="vente_index", methods={"GET"})
      */
-    public function index(VenteRepository $venteRepository): Response
+    public function index(VenteRepository $venteRepository, PaginatorInterface $paginator,Request $request): Response
     {
-        $image = $venteRepository->findAll();
-        $dossier_image = $this->getParameter('uploads_directory');
+
+        $image = $paginator->paginate(
+            $venteRepository->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
+
 
         return $this->render('vente/index.html.twig', [
-            'ventes' => $venteRepository->findAll(),
+            'ventes' => $image,
+
         ]);
     }
+
+
 
     /**
      * @Route("/new", name="vente_new", methods={"GET","POST"})

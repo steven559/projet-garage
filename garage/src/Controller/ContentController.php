@@ -37,6 +37,13 @@ class ContentController extends AbstractController
     }
 
     /**
+     * @Route("/mention",name="mention")
+     */
+    public function mention(){
+        return $this->render('mention.html.twig');
+    }
+
+    /**
      * @Route("/newHoraire" , name="horaire_new" ,methods={"GET","POST"})
      */
     public function newHorraire(Request $request)

@@ -1,4 +1,9 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<style>
+    form div{
+        margin-top:1%;
+    }
+</style>
+{{ form_start(form,{'attr':{'class':'venteForm'}}) }}
+    {{ form_widget(form,{'attr':{'class':'venteForm'}}) }}
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form,{'attr':{'class':'venteForm'}}) }}

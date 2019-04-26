@@ -28,6 +28,14 @@ class VenteRepository extends ServiceEntityRepository
 
     }
 
+    public function paginationvente()
+    {
+        return $this->createQueryBuilder('k')
+            ->setMaxResults('3')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Vente[] Returns an array of Vente objects
     //  */

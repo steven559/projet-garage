@@ -115,6 +115,7 @@ body {
     width: 100%;
     z-index: 10;
     background-color: #c6c0c0;
+    top:0
 
 
 }
@@ -174,7 +175,7 @@ body {
     color: cadetblue;
     text-shadow: 1px 1px dodgerblue;
     text-align: center;
-    margin-top: 8%;
+    margin-top: 10%;
 }
 
 .titlePageAccueil {
