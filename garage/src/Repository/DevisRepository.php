@@ -18,6 +18,10 @@ class DevisRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Devis::class);
     }
+    public function getDevisOrder(){
+        return $q = $this->createQueryBuilder('c')
+            ->orderBy('c.created','DESC');
+    }
 
     // /**
     //  * @return Devis[] Returns an array of Devis objects

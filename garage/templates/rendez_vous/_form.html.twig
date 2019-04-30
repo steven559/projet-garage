@@ -1,13 +1,14 @@
+<style>
 
-
+</style>
 <!-- Include English language -->
 
 
-<div id="push">{{ form_start(form)  }}</div>
-<div id="push">   {{ form_widget(form) }}</div>
+<div>{{ form_start(form)  }}</div>
+<div>   {{ form_widget(form) }}</div>
 
-<button id="test4">valider</button>
-<button class="btn">{{ button_label|default('Save') }}</button>
+<button class="btn btn-primary" style="margin-left: 3%; margin-top: 1%;">valider</button>
+
 <div id="push">{{ form_end(form) }}</div>
 
 
@@ -15,14 +16,17 @@
 
 
 <script>// Initialization
-    $('#test').datepicker({
+    $('.datepicker-here').datepicker({
         language: 'fr',
         minDate: new Date()
         // Now can select only dates, which goes after today
     });
     var disabledDays = [0, 6];
 
-    $('#test').datepicker({
+
+//function qui permet d'enlever les jour passer
+
+    $('.datepicker-here').datepicker({
         language: 'fr',
         onRenderCell: function (date, cellType) {
             if (cellType == 'day') {
@@ -35,7 +39,7 @@
             }
         }
     })
-    $('#test').datepicker({
+    $('.datepicker-here').datepicker({
         timepicker: true,
         language: 'fr',
 
@@ -67,20 +71,6 @@
         }
     });
 
-    var test = document.getElementById("test");
-    var test3 = document.getElementById('push');
-    var test2 = test.value;
-    var test4 = document.getElementById('test4');
-    console.log(test2)
-    //autocomplete a tester
-    test.addEventListener('click',function(){
-       /* test3.appendChild(test2);
-       test2.push('test3')
 
-        test3.innerHTML = test2;*/
-       test.value= test2;
-
-
-    })
 
 </script>

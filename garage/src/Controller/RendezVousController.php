@@ -32,14 +32,15 @@ class RendezVousController extends AbstractController
         $user = $this->getUser();
 
         return $this->render('rendez_vous/index.html.twig', [
-            //mettre la condition
+            //Permet de bloquer le contenue a l'utililaseur uniquement
+
             'rendez_vouses' => $rendezVousRepository->findBy(["User"=>$user]),
             'AdminReponses'=> $adminReponseRepository->findBy(['user_id'=>$user]),
         ]);
     }
 
 
-    //permet de recevoir tout les rendez-vous
+
     /**
      * @param RendezVousRepository $rendezVousRepository
      * @return Response
@@ -48,6 +49,7 @@ class RendezVousController extends AbstractController
     public function indexAdmin(RendezVousRepository $rendezVousRepository, AdminReponseRepository $adminReponseRepository): Response
     {
         return $this->render('rendez_vous/index.html.twig', [
+            //permet de d'afficher tout les rendez-vous pour l'admin
 
             'rendez_vouses' => $rendezVousRepository->findAll(),
             'AdminReponses'=> $adminReponseRepository->findAll()
@@ -61,14 +63,16 @@ class RendezVousController extends AbstractController
      */
     public function newResponse(Request $request, RendezVous $rendezVous): Response
     {
+        //on créé le formulaire
 
         $AdminReponse = new AdminReponse();
         $form = $this->createForm(AdminReponseType::class,$AdminReponse);
         $form->handleRequest($request);
 
+        //on verifie si il est valide
         if($form->isSubmitted() && $form->isValid()){
 
-
+           //recuperé l'utilisateur connecter
             $user = $this->getUser();
             $user_email = $user->getEmail();
           /*  $AdminReponse->setCreatedAt(new\DateTime(time()));*/
@@ -102,15 +106,18 @@ $this->addFlash('success', 'Message Envoyez ');
             $user_email = $user->getEmail();
             $rendezVous->setUser($this->getUser());
             // Envoie email
+            //configurer le swift avec l'email souhaiter
+
             $transport = (new \Swift_SmtpTransport('smtp.gmail.com',465,'ssl'))
                 ->setUsername('garagepilet@gmail.com')
                 ->setPassword('b@bmarley789');
 
             $mailer = new\Swift_Mailer($transport);
-
+         //configuré l'affichage du mail
+            //l'envoie le receveur
             $message = (new\Swift_Message('Garage Pilet'))
                 ->setSubject('Message de rendez-vous')
-                ->setFrom('garagepilet@gmail.com')
+                ->setFrom('garagepilet@gmail.com') //renplacer ar user-email
                 ->setTo('garagepilet@gmail.com')
                 ->setBody(
                     $this->renderView(
@@ -122,6 +129,7 @@ $this->addFlash('success', 'Message Envoyez ');
                     ),
                     'text/html'
                 );
+            //on envoie
             $mailer->send($message);
 
             $this->redirectToRoute('content_index');
@@ -143,25 +151,7 @@ $this->addFlash('success', 'Message Envoyez ');
         ]);
     }
 
- /*   public function indexMail($email, \Swift_Mailer $mailer)
-    {
-        $form = $this->createForm(EmailType::class,$email);
-        $message = (new \Swift_Message($email))
-            ->setFrom('')
-            ->setTo('')
-            ->setBody(
-                $this->renderView(
-                // templates/emails/registration.html.twig
-                    'rendez_vous/admin.html.twig',
-                    ['name' => $email]
-                ),
-                'text/html'
-            );
 
-        $mailer->send($message);
-
-        return $this->render('rendez_vous/index.html.twig');
-    }*/
 
     /**
      * @Route("/{id}", name="rendez_vous_show", methods={"GET"})

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Devis{% endblock %}
+
+{% block body %}
+    <h1>Repondre au rendez-vous</h1>
+
+
+    <div id="my-element"> {{ form_start(form) }}</div>
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    {#{{ include('rendez_vous/_formAdmin.html.twig') }}#}
+
+
+
+    <a href="{{ path('devis_admin') }}">back to list</a>
+{% endblock %}

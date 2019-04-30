@@ -3,8 +3,11 @@
 {% block title %}RendezVous{% endblock %}
 
 {% block body %}
+    <div style="height:14vh;"></div>
     <h1>RendezVous</h1>
+    <style>
 
+    </style>
 
 
 <div class="containerRendezVous">
@@ -13,7 +16,8 @@
 
 
 
-                <div><strong>Heur du rendez-vous:</strong> Entre{{ rendez_vous.heurDepart }} Est {{ rendez_vous.heurFin }}</div>
+                <div><strong>Sujet du rendez-vous:</strong>{{ rendez_vous.sujet }}</div>
+    <div><strong>Message</strong>{{ rendez_vous.message }}</div>
 
 
 

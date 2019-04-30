@@ -101,7 +101,7 @@ class UserController extends AbstractController
                 );
             $mailer->send($message);
 
-            $this->redirectToRoute('login');
+          return $this->redirectToRoute('login');
         }
         return $this->render('user/inscrit.html.twig', [
             'registrationForm' => $form->createView(),

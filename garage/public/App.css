@@ -4,9 +4,15 @@
 .required {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    font-size: 2vh;
+
+
     font-weight: bold;
+}
+#rendez_vous{
+    margin-left: 3%;
+}
+.input{
+    width:60%;
 }
 
 .required > input {
@@ -30,7 +36,7 @@ form > #horaire {
 }
 
 textarea {
-    width: 50%;
+    width: 80%;
     height: 20vh;
 }
 
@@ -105,7 +111,7 @@ body {
 
 .header {
 
-    height: 14vh;
+    height: 11vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -115,7 +121,7 @@ body {
     width: 100%;
     z-index: 10;
     background-color: #c6c0c0;
-    top:0
+    top:3vh;
 
 
 }
@@ -126,23 +132,54 @@ body {
 
 }
 
-.section {
-    padding-left: 5vw;
+.section:hover {
+    -webkit-transform: scale(1.13);
+    transform: scale(1.13);
 
+
+}
+i:hover {
+
+    cursor: pointer;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+
+}
+
+.section  a{
+    color:white;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.section a:hover{
+
+
+    color:#596877;
 }
 
 .containerHeader {
     width: 88%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-around;
 
 }
 
 /*INDEX(ACCUEIL)*/
 
-
-.titre {
+.titre{
+    color: white;
+    font-weight: bold;
+    margin-left: 3%;
+}
+.titre2{
     text-align: center;
     color: #5eb5e0;
     text-shadow: 1px 1px cadetblue;
@@ -156,6 +193,9 @@ body {
     /* position: absolute; */
     margin-top: -4%;
     color: white;
+}
+.containerContent{
+    width: 60%;
 }
 
 
@@ -367,4 +407,175 @@ body {
     border-radius: 45px;
     box-shadow: 8px 8px 4px #656565;
 }
-                                        /*CAROUSEL*/
+/*MENU telephone*/
+.menu{
+    display:none;
+}
+#menuToggle{
+    display:none;
+}
+@media screen and (max-width:800px ){
+    .header{
+        display:none;
+    }
+    .dessusheader{
+
+    }
+    .headerTel{
+        height: 11vh;
+
+
+
+
+        box-shadow: 0 2px 2px 0 #6f6161;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+        background-color: #c6c0c0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    #menuToggle
+    {
+        display: block;
+        /*position: relative;
+        top: 111px;
+        left: 50px;*/
+
+        z-index: 1;
+
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    input[type=checkbox]{
+        color:black !important;
+    }
+
+    #menuToggle input
+    {
+        color:black !important;
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+
+
+
+        cursor: pointer;
+
+        opacity: 0;
+        z-index: 2;
+
+        -webkit-touch-callout: none;
+    }
+
+    #menuToggle span
+    {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+
+        background:  #596877;
+        border-radius: 3px;
+
+        z-index: 1;
+        margin-left: 4px;
+
+        transform-origin: 4px 0px;
+
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+        opacity 0.55s ease;
+    }
+
+    #menuToggle span:first-child
+    {
+        transform-origin: 0% 0%;
+    }
+
+    #menuToggle span:nth-last-child(2)
+    {
+        transform-origin: 0% 100%;
+    }
+
+    #menuToggle input:checked ~ span
+    {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #232323;
+        margin-left: 5px;
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(3)
+    {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    #menuToggle input:checked ~ span:nth-last-child(2)
+    {
+        transform: rotate(-45deg) translate(0, -1px);
+    }
+
+    #menu
+    {
+        position: absolute;
+        width: 109%;
+        height: 2500%;
+        overflow:hidden;
+        text-align:center;
+        margin: -100px 0 0 -50px;
+        padding-top: 80px;
+
+        background: #ededed;
+        list-style-type: none;
+        -webkit-font-smoothing: antialiased;
+
+        transform-origin: 0% 0%;
+        transform: translate(-100%, 0);
+
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    }
+
+    #menu li
+    {
+        padding: 32px 0;
+        font-size: 22px;
+        text-align: center;
+    }
+    #menuToggle input:checked ~ ul
+    {
+        transform: none;
+    }
+    .menu ul{
+        background-color: #7a421a;
+    }
+}                                      /*VUE telephone*/
+@media screen and (max-width:500px ){
+    .containerImageAccueil{
+        flex-direction: column;
+    }
+    .titre{
+        font-size: 22px;
+    }
+    label{
+font-size: 5vw;
+    }
+    *, ::after, ::before{
+        box-sizing: content-box;
+    }
+    .containerContent{
+        width: 100%;
+    }
+    #menu li {
+        padding: 18px 0;
+        font-size:15px;
+    }
+    .carousel-inner img{
+        height: 45vw !important;
+    }
+
+}

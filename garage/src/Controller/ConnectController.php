@@ -29,6 +29,7 @@ class ConnectController extends AbstractController
             'error' => $error
         ]);
 
+
     }
 
 }

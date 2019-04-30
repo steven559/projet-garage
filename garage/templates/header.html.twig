@@ -8,7 +8,7 @@
     .infoHeader{
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content:space-around;
         width: 96%;
         align-items: center;
     }
@@ -18,7 +18,40 @@
     }
 </style>
 
+<div class="headerTel">
 
+
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+
+                <a href="{{ path('content_index') }}"><li>Accueil</li></a>
+
+                <a href="{{ path('login') }}"><li>Connexion</li></a>
+                <a href="{{ path('register') }}"><li>Inscription</li></a>
+                <a  href="{{ path('vente_index') }}"><li>Nos Vehicules</li></a>
+                {% if is_granted('ROLE_USER') %}
+                <a  href="{{ path('rendez_vous_index') }}"><li>Rendez-vous</li></a>
+                    <a  href="{{ path('devis_index') }}"><li>Devis</li></a>
+                <a  href="/logout"><li>Deconnexion</li></a>
+                {% elseif is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('localisation') }}"><li>localisation</li></a>
+
+                    <a  href="{{ path('rendez_vous_admin') }}"><li>Rendez-vous admin</li></a>
+                    <a  href="{{ path('devis_admin') }}"><li>Devis admin</li></a>
+                    <a  href="/logout"><li>Deconnexion</li></a>
+
+
+
+{% endif %}
+            </ul>
+        </div>
+
+</div>
 <div class="header">
     <div class="dessusheader" style="width:100%; background-color: #8e8585; height:3vh;display: flex;
     flex-direction: row;">
@@ -31,13 +64,13 @@
     <a href="{{ path('content_index') }}"><img class="image" style="width:12vh;" src="../52643003_817637738583608_6312561306083786752_n.png" alt="">
     </a>
     <div class="containerHeader">
-    <div class="section">DEVIS</div>
+    <div class="section"><a href="{{ path('devis_index') }}">DEVIS</a></div>
 
         <div class="section"><a href="{{ path('vente_index') }}">NOS VEHICULES</a></div>
         {% if is_granted('ROLE_USER') %}
-            <div class="section"><a href="{{ path('rendez_vous_index') }}">Rendez-vous</a></div>
+            <div class="section"><a href="{{ path('rendez_vous_index') }}">RENDEZ-VOUS</a></div>
           <!--  <div class="section">Mon espace Devis</div>-->
-            <div class="section"><a href="/logout">Deconnexion</a></div>
+            <div class="section"><a href="/logout">DECONNEXION</a></div>
 
 
 
@@ -46,9 +79,10 @@
 
 
 {% elseif is_granted('ROLE_ADMIN') %}
-    <div class="section"><a href="{{ path('rendez_vous_admin') }}">Rendez-vous admin</a></div>
+    <div class="section"><a href="{{ path('rendez_vous_admin') }}">RENDEZ-VOUS ADMIN</a></div>
   <!--  <div class="section">Mon espace Devis</div>-->
-    <div class="section"><a href="/logout">Deconnexion</a></div>
+    <div class="section"><a href="{{ path('devis_admin') }}">DEVIS ADMIN</a></div>
+    <div class="section"><a href="/logout">DECONNEXION</a></div>
     <div class="section"><a href="{{ path('register') }}">INSCRIPTION</a></div>
 {% else %}
     <div class="section"><a href="{{ path('login') }}">CONNEXION</a></div>

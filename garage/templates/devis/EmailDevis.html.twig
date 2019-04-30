@@ -1,0 +1,28 @@
+{% block body  %}
+
+    <tbody>
+
+    <div class="containerDevis container">
+        <div class="styleMessage">
+            <div class="category"><strong>Expediteur: </strong>{{ devi.user }}</div>
+            <div class="category"><strong>Voiture: </strong>{{ devi.voiture }}</div>
+            <div class="category"><strong>Marque: </strong>{{ devi.marque }}</div>
+            <div class="category"><strong>Modèle: </strong>{{ devi.modele }}</div>
+            {% if devi.numero is null %}
+
+
+            {% else  %}
+                <div class="category"><strong>Numéro: </strong>{{ devi.numero }}</div>
+            {% endif %}
+
+            <div class="category"><strong>Envoyez le: </strong>{{ devi.date }}</div>
+            <div class="category"><strong>Problème technique:  </strong><br>{{ devi.informationComplementaire }}</div>
+
+
+
+        </div>
+    </div>
+
+    </tbody>
+
+{% endblock %}

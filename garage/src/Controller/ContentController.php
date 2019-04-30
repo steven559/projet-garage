@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/content")
+ * @Route("/")
  */
 class ContentController extends AbstractController
 {
@@ -32,7 +32,7 @@ class ContentController extends AbstractController
         return $this->render('content/index.html.twig', [
             'lastvoitures'=> $lastvoitures,
             'contents' => $contentRepository->findAll(),
-            'horaire' => $horaireRepository->findAll()
+
         ]);
     }
 
@@ -43,28 +43,7 @@ class ContentController extends AbstractController
         return $this->render('mention.html.twig');
     }
 
-    /**
-     * @Route("/newHoraire" , name="horaire_new" ,methods={"GET","POST"})
-     */
-    public function newHorraire(Request $request)
-    {
-        $horraire = new Horaire();
-        $form = $this->createForm(HoraireType::class, $horraire);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($horraire);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('content_index');
-        }
-        return $this->render('content/newHoraire.html.twig', [
-            'horaire' => $horraire,
-            'form' => $form->createView(),
-        ]);
-
-    }
 
     /**
      * @Route("/new", name="content_new", methods={"GET","POST"})
@@ -101,36 +80,9 @@ class ContentController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/afficherHoraire/{id}", name="horaire_show", methods={"GET"})
-     */
-    public function showHoraire(Horaire $horaire): Response
-    {
-        return $this->render('content/showHoraire.html.twig', [
-            'horaire' => $horaire,
-        ]);
-    }
 
-    /**
-     * @Route("/{id}/editHoraire", name="horaire_edit", methods={"GET","POST"})
-     */
-    public function editHoraire(Request $request, Horaire $horaire): Response
-    {
-        $form = $this->createForm(HoraireType::class, $horaire);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('content_index', [
-                'id' => $horaire->getId(),
-            ]);
-        }
-        return $this->render('content/editHoraire.html.twig', [
-            'horaire' => $horaire,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}/edit", name="content_edit", methods={"GET","POST"})
@@ -154,19 +106,7 @@ class ContentController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/horaire/{id}", name="horaire_delete", methods={"DELETE"})
-     */
-    public function deleteHoraire(Request $request, Horaire $horaire): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $horaire->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($horaire);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('content_index');
 
-    }
 
     /**
      * @Route("/content{id}", name="content_delete", methods={"DELETE"})

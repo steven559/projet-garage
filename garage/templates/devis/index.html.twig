@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis index{% endblock %}
+
+{% block body %}
+    <style>
+        .containerDevis{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 7%;
+        }
+        .styleMessage{
+            background-color: aliceblue;
+            padding: 3%;
+        }
+        .category{
+            border-bottom: 1px solid black;
+            padding-bottom: 3px;
+        }
+    </style>
+    <h1>Devis index</h1>
+
+
+
+        <tbody>
+        {% for devi in devis %}
+            <div class="containerDevis container">
+                <div class="styleMessage">
+                    <div class="category"><strong>Expediteur: </strong>{{ devi.user }}</div>
+                <div class="category"><strong>Voiture: </strong>{{ devi.voiture }}</div>
+                <div class="category"><strong>Marque: </strong>{{ devi.marque }}</div>
+                <div class="category"><strong>Modèle: </strong>{{ devi.modele }}</div>
+                    {% if devi.numero is null %}
+
+
+                    {% else  %}
+                        <div class="category"><strong>Numéro: </strong>{{ devi.numero }}</div>
+                    {% endif %}
+
+                <div class="category"><strong>Envoyez le: </strong>{{ devi.date }}</div>
+                <div class="category"><strong>Problème technique:  </strong><br>{{ devi.informationComplementaire }}</div>
+                <div>
+                    <a href="{{ path('devis_show', {'id': devi.id}) }}">show</a>
+                    <a href="{{ path('devis_edit', {'id': devi.id}) }}">edit</a>
+                </div>
+
+                </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        <div style="margin-top: 3%;">
+        <a  href="{{ path('devis_new') }}">Create new</a>
+        </div>
+        </tbody>
+    {% for AdminReponseDevi in AdminReponseDevi %}
+    <div>{{ AdminReponseDevi.user }}</div>
+        <div>{{ AdminReponseDevi.message }}</div>
+        <div>{{ AdminReponseDevi.estimation }}</div>
+        <div class="detailMessage"><a class="detailText"
+                                      href="{{ path('reponse_devis', {'id': AdminReponseDevi.id}) }}">Voir le
+                message complet</a></div>
+    {% endfor %}
+
+
+
+{% endblock %}

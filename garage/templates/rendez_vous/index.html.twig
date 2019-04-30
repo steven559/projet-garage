@@ -62,11 +62,9 @@
             {% if is_granted('ROLE_USER') %}
                 <div class="containerRendezVous">
                     <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
+                    <div class="message"><strong>{{ rendez_vous.date }}</strong></div>
 
-                    <!-- <div id="rendezVous" class="containerRendezVous">
-            <div class="jour">Rendez-vous : {{ rendez_vous.jour }}</div>
-            <div class="heurDepart">{{ rendez_vous.heurDepart }}</div>
-            <div class="heurFin">{{ rendez_vous.heurFin }}</div>-->
+
 
 
                     <div class="detailMessage"><a class="detailText"
@@ -77,11 +75,8 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="containerRendezVous">
                     <div class="message"><strong>Message de :</strong> {{ rendez_vous.user }}</div>
+                    <div class="message"><strong>{{ rendez_vous.date }}</strong></div>
 
-                    <!-- <div id="rendezVous" class="containerRendezVous">
-            <div class="jour">Rendez-vous : {{ rendez_vous.jour }}</div>
-            <div class="heurDepart">{{ rendez_vous.heurDepart }}</div>
-            <div class="heurFin">{{ rendez_vous.heurFin }}</div>-->
 
 
                     <div class="detailMessage"><a class="detailText"

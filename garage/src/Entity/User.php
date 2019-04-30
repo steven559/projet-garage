@@ -5,10 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Cet email est déjà utilisé"
+ * )
  */
 class User implements UserInterface
 {
@@ -69,10 +74,22 @@ class User implements UserInterface
      */
     private $active;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Devis", mappedBy="user")
+     */
+    private $devis;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AdminReponseDevis", mappedBy="user")
+     */
+    private $adminReponseDevis;
+
     public function __construct()
     {
         $this->rendezVouses = new ArrayCollection();
         $this->adminReponses = new ArrayCollection();
+        $this->devis = new ArrayCollection();
+        $this->adminReponseDevis = new ArrayCollection();
     }
     public function __toString()
     {
@@ -301,6 +318,68 @@ class User implements UserInterface
     public function setActive(int $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Devis[]
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): self
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis[] = $devi;
+            $devi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): self
+    {
+        if ($this->devis->contains($devi)) {
+            $this->devis->removeElement($devi);
+            // set the owning side to null (unless already changed)
+            if ($devi->getUser() === $this) {
+                $devi->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdminReponseDevis[]
+     */
+    public function getAdminReponseDevis(): Collection
+    {
+        return $this->adminReponseDevis;
+    }
+
+    public function addAdminReponseDevi(AdminReponseDevis $adminReponseDevi): self
+    {
+        if (!$this->adminReponseDevis->contains($adminReponseDevi)) {
+            $this->adminReponseDevis[] = $adminReponseDevi;
+            $adminReponseDevi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdminReponseDevi(AdminReponseDevis $adminReponseDevi): self
+    {
+        if ($this->adminReponseDevis->contains($adminReponseDevi)) {
+            $this->adminReponseDevis->removeElement($adminReponseDevi);
+            // set the owning side to null (unless already changed)
+            if ($adminReponseDevi->getUser() === $this) {
+                $adminReponseDevi->setUser(null);
+            }
+        }
 
         return $this;
     }

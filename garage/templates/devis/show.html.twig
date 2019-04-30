@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis{% endblock %}
+
+{% block body %}
+<style>
+    .containerDevis{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 7%;
+    }
+    .styleMessage{
+        background-color: aliceblue;
+        padding: 3%;
+    }
+    .category{
+        border-bottom: 1px solid black;
+        padding-bottom: 3px;
+    }
+</style>
+    <h1>Devis</h1>
+
+
+<tbody>
+
+<div class="containerDevis container">
+    <div class="styleMessage">
+
+        <div class="category"><strong>Voiture: </strong>{{ devi.voiture }}</div>
+        <div class="category"><strong>Marque: </strong>{{ devi.marque }}</div>
+        <div class="category"><strong>Modèle: </strong>{{ devi.modele }}</div>
+        {% if devi.numero is null %}
+
+
+        {% else  %}
+            <div class="category"><strong>Numéro: </strong>{{ devi.numero }}</div>
+        {% endif %}
+
+        <div class="category"><strong>Envoyez le: </strong>{{ devi.date }}</div>
+        <div class="category"><strong>Problème technique:  </strong><br>{{ devi.informationComplementaire }}</div>
+        <div>
+            <a href="{{ path('devis_index') }}">Retour au devis</a>
+            <a href="{{ path('devis_newadmin',{'id': devi.id}) }}">Repondre au rendez-vous</a>
+        </div>
+        <div>
+
+           <div> {{ include('devis/_delete_form.html.twig') }}</div>
+        </div>
+
+    </div>
+</div>
+
+</tbody>
+
+
+
+{% endblock %}

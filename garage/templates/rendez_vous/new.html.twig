@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New RendezVous{% endblock %}
+{% block title %} RendezVous{% endblock %}
 
 {% block body %}
-    <h1>Demandez un nouveau Rendez-Vous</h1>
+    <style>
+
+    </style>
+    <div style="height: 14vh;"></div>
+    <h1 class="titre">Demandez un Rendez-Vous</h1>
 
     {{ include('rendez_vous/_form.html.twig') }}
 
-    <a href="{{ path('rendez_vous_index') }}">back to list</a>
+    <a style="margin-top: 1%; margin-left: 3%;" class="btn btn-outline-primary" href="{{ path('rendez_vous_index') }}">Retour a l'accueil</a>
 {% endblock %}

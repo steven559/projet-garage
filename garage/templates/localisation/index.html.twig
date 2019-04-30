@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+
+          .test1{
+            margin-top: 3%;
+              width:80%;
+        }
+
+    </style>
+    <div style="height:20vh;"></div>
+    <div style="width: 100%; display:flex; flex-direction:row; ">
+    <h1 style="width:50%; text-align: center; ">Localisation</h1>
+    <h1 style="width:50%; text-align: center">Nous Contacter</h1>
+    </div>
+    <div style="width: 100%; display:flex; flex-direction: row">
+    <iframe style="width: 50%; margin-top: 3%;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2568.0988026882683!2d3.997286015604457!3d49.93448733228833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e9df41874e3293%3A0x61dd73960082d4c7!2s2+Place+Foch%2C+02500+Wimy!5e0!3m2!1sfr!2sfr!4v1556550349197!5m2!1sfr!2sfr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <div class="containercontact" style="width: 50%; display:flex; flex-direction: column; text-align: center;">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div style="margin-top: 3%;"> <button class="btn btn-primary">Confirmer</button></div>
+             {{ form_end(form) }}
+
+        </div>
+    </div>
+    <h2 class="text-center">horaire</h2>
+    {% for horaire in horaire %}
+    <div> Du {{ horaire.jour }} {{ horaire.matin }} et {{ horaire.midi }}</div>
+        <div style="display:flex;flex-direction: column">
+
+            <a href="{{ path('horaire_edit',{'id': horaire.id}) }}">Editer</a>
+            <a href="{{ path('horaire_new') }}">Ajouter un nouvelle horaire</a>
+
+        </div>
+
+    {% endfor %}
+{% endblock %}

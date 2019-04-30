@@ -36,6 +36,27 @@ class Devis
      */
     private $informationComplementaire;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Numero;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="devis")
+     */
+    private $user;
+
+    public function __construct()
+    {
+        date_default_timezone_set('Europe/Paris');
+        $this->date = date('d/m/Y à H:i:s',time());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +106,42 @@ class Devis
     public function setInformationComplementaire(?string $informationComplementaire): self
     {
         $this->informationComplementaire = $informationComplementaire;
+
+        return $this;
+    }
+
+    public function getNumero(): ?string
+    {
+        return $this->Numero;
+    }
+
+    public function setNumero(?string $Numero): self
+    {
+        $this->Numero = $Numero;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
