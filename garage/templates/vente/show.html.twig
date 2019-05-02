@@ -3,36 +3,110 @@
 {% block title %}Vente{% endblock %}
 
 {% block body %}
-    <h1>Vente</h1>
+    <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <div style="height:14vh;"></div>
+    <h1 class="title">Vente</h1>
+<style>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ vente.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ vente.titre }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ vente.image }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ vente.content }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ vente.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+    .detailVente{
+        padding:9px 10px 4px 10px;
+        border-bottom: black 1px solid;
+        font-size: 20px;
+    }
+    .containerDetailVente{
+        width: 60%;
 
-    <a href="{{ path('vente_index') }}">back to list</a>
+        background-color: white;
+
+        margin-top: 3%;
+        border:solid 1px black;
+        border-bottom: none;
+    }
+    .containerTotalVente{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+
+<div class="containerCarousel">
+    <div id="demo" class="carousel slide" data-ride="carousel" style="    ">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            {% if vente.image2 is null %}
+            {% else %}
+                <li data-target="#demo" data-slide-to="1"></li>
+            {% endif %}
+            {% if vente.image3 is null %}
+            {% else %}
+                <li data-target="#demo" data-slide-to="2"></li>
+            {% endif %}
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="imagecarousel" src="/image/{{ vente.image }}" alt="Voiture"
+                >
+            </div>
+            {% if vente.image2 is null %}
+
+            {% else %}
+                <div class="carousel-item">
+                    <img class="imagecarousel"  src="/image/{{ vente.image2 }}" alt="Voiture"
+                    >
+                </div>
+            {% endif %}
+            {% if vente.image3 is null %}
+
+            {% else %}
+                <div class="carousel-item">
+                    <img class="imagecarousel"  src="/image/{{ vente.image3 }}" alt="Voiture"
+                    >
+                </div>
+            {% endif %}
+        </div>
+
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <div class="englobImg">  <div class="titleVente">{{ vente.titre }}</div></div>
+
+        <div class="containerTotalVente">
+        <div class="containerDetailVente">
+        <div class="detailVente"><strong>Modèle :</strong>    {{ vente.modele }}</div>
+        <div class="detailVente"><strong>Marque :  </strong> {{ vente.marque }}</div>
+            <div class="detailVente"><strong>Année :   </strong>{{ vente.annee }}</div>
+            <div class="detailVente"><strong>Kilometrage :    </strong>{{ vente.kilometrage }}</div>
+            <div class="detailVente"><strong>Carburant :    </strong>{{ vente.carburant }}</div>
+            <div class="detailVente"><strong>Boite de vitesse :    </strong>{{ vente.boiteDeVitesse }}</div>
+            <div style="text-align: center" class="containerTextVente">
+                <div style="
+text-align: justify;"class="detailVente"><div style="text-align: center;"><strong>Imformation complementaire:</strong></div>{{ vente.content }}</div>
+            </div>
+                <div class="detailVente"><strong>Prix: </strong>{{ vente.prix }} €</div>
+
+        </div>
+        </div>
+
+
+    <a style="margin-top: 20px;" class="btn btn-outline-primary" href="{{ path('vente_index') }}">Retour a l'accueil</a>
+        {% if is_granted('ROLE_ADMIN') %}
+
 
     <a href="{{ path('vente_edit', {'id': vente.id}) }}">edit</a>
 
     {{ include('vente/_delete_form.html.twig') }}
+        {% endif %}
 {% endblock %}

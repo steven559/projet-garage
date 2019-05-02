@@ -66,6 +66,16 @@ class Vente
      */
     private $boiteDeVitesse;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image3;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +197,30 @@ class Vente
     public function setBoiteDeVitesse(?string $boiteDeVitesse): self
     {
         $this->boiteDeVitesse = $boiteDeVitesse;
+
+        return $this;
+    }
+
+    public function getImage2(): ?string
+    {
+        return $this->image2;
+    }
+
+    public function setImage2(?string $image2): self
+    {
+        $this->image2 = $image2;
+
+        return $this;
+    }
+
+    public function getImage3(): ?string
+    {
+        return $this->image3;
+    }
+
+    public function setImage3(?string $image3): self
+    {
+        $this->image3 = $image3;
 
         return $this;
     }

@@ -48,15 +48,55 @@ class VenteController extends AbstractController
         $form->handleRequest($request);
         $dossier_image = $this->getParameter('uploads_directory');
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('vente')['image'];
+            $file_2 = $request->files->get('vente')['image2'];
+            $file_3 = $request->files->get('vente')['image3'];
+
+
+
+
             if($file){
                 $new_image = md5(uniqid()) . '.' . $file->guessExtension();
+                if($file_2 === null){
+
+                }
+                else {
+                    $new_image2 = md5(uniqid()) . '.' . $file_2->guessExtension();
+
+                    $file_2->move(
+                        $dossier_image,
+                        $new_image2
+                    );
+                    $vente->setImage2($new_image2);
+                }
+                if($file_3 === null) {
+
+                }
+                else {
+                    $new_image3 = md5(uniqid()) . '.' . $file_3->guessExtension();
+
+                    $file_3->move(
+                        $dossier_image,
+                        $new_image3
+
+                    );
+                    $vente->setImage3($new_image3);
+                }
+
                 $file->move(
                     $dossier_image,
                     $new_image
-                );
+
+                    );
+
+
+
+
                 $vente->setImage($new_image);
+
+
             }
             $vente = $form->getData();
 

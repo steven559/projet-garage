@@ -24,6 +24,15 @@ class VenteType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 ])
+            ->add('image2',FileType::class,['label' => false,
+                'mapped' => false,
+                'required' => false])
+
+            ->add('image3', FileType::class,[
+                'label' =>false,
+                'mapped' =>false,
+                'required' =>false
+            ])
 
             ->add('marque', TextType::class, ['label'=> false,
                 'attr' => ['placeholder' => 'marque']
